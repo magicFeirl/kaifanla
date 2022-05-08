@@ -1,14 +1,14 @@
 <template>
     <div class="fixed bottom-0 items-center left-0 flex h-12 w-full border-t border-t-light-700 bg-light-600">
-        <span class="flex-1 text-center">
+        <router-link to="/" class="flex-1 text-center">
             <i class="iconfont icon-home"></i>
-        </span>
-        <span class="flex-1 text-center">
+        </router-link>
+        <router-link to="/myorder" class="flex-1 text-center">
             <i class="iconfont icon-user"></i>
-        </span>
-        <span class="flex-1 text-center">
+        </router-link>
+        <router-link to="/" class="flex-1 text-center">
             <i class="iconfont icon-menu1"></i>
-        </span>
+        </router-link>
     </div>
 </template>
 

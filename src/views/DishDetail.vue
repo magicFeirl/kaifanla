@@ -22,8 +22,8 @@
 
         <div
             class="rounded mb-8 mt-4 p-2 w-full flex justify-end items-center bg-light-700 border border-light-800 border-t-transparent">
-            <button class="text-sm btn success mr-2">我要订餐</button>
-            <button class="text-sm btn warn" @click="$router.replace({ path: '/home' })">我再看看</button>
+            <button @click="addOrder" class="text-sm btn btn-success mr-2">我要订餐</button>
+            <button class="text-sm btn btn-warn" @click="$router.replace({ path: '/home' })">我再看看</button>
         </div>
     </div>
     <div class="text-center" v-else>
@@ -32,12 +32,13 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { ref } from 'vue'
 
 import { getProduct } from '../api'
 
 const route = useRoute()
+const router = useRouter()
 const did = route.params.did
 
 const loading = ref(true)
@@ -47,6 +48,10 @@ const img_src = ref('')
 const material = ref('')
 const name = ref('')
 const price = ref('')
+
+function addOrder() {
+    router.push({ path: '/new/' + did })
+}
 
 getProduct(did).then(({ subjects: data }) => {
     data = data[0]
@@ -63,17 +68,5 @@ getProduct(did).then(({ subjects: data }) => {
 <style scoped>
 .divider {
     @apply h-1 border-t border-t-light-700 my-2
-}
-
-.btn {
-    @apply p-2 text-white cursor-pointer rounded
-}
-
-.btn.success {
-    @apply bg-green-500
-}
-
-.btn.warn {
-    @apply bg-yellow-300
 }
 </style>

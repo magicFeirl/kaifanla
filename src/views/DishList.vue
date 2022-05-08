@@ -3,15 +3,16 @@
         <NavSearch :keyword="keyword" v-model="keyword" placeholder="搜索菜品名称或材料..."></NavSearch>
 
         <DishList v-if="!firstLoading">
-            <DishListItem @click="viewDishDetail(product.did)" v-for="product in products" :dish="product" :key="product.did"></DishListItem>
+            <DishListItem @click="viewDishDetail(product.did)" v-for="product in products" :dish="product"
+                :key="product.did"></DishListItem>
         </DishList>
         <div v-else class="h-full flex justify-center">
             <span class="text-light-900 text-lg mt-20">正在加载中~</span>
         </div>
 
         <div v-if="!firstLoading" class="mt-4">
-            <div v-if="!hasMore" class="p-2 text-center text-red-200 bg-red-600/50 rounded">没有更多数据了~</div>
-            <button @click="currPage += 1" v-else class="bg-green-500 text-white p-2 w-full rounded">加载更多</button>
+            <div v-if="!hasMore" class="btn btn-danger w-full">没有更多数据了~</div>
+            <button @click="currPage += 1" v-else class="btn btn-success w-full">加载更多</button>
         </div>
     </div>
 </template>
@@ -35,7 +36,7 @@ const currPage = ref(1)
 const keyword = ref('')
 
 function viewDishDetail(did) {
-    router.push({path: '/home/order/' + did})
+    router.push({ path: '/order/' + did })
 }
 
 async function load_data() {

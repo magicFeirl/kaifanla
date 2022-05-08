@@ -1,0 +1,16 @@
+/* Button */
+.btn {
+    @apply p-2 text-white cursor-pointer rounded text-center active:scale-95 transition-transform transform
+}
+
+.btn.btn-success {
+    @apply bg-green-500
+}
+
+.btn.btn-warn {
+    @apply bg-yellow-300
+}
+
+.btn.btn-danger {
+    @apply text-red-200 bg-red-600/50
+}
