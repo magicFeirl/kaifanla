@@ -67,6 +67,6 @@ getProduct(did).then(({ subjects: data }) => {
 
 <style scoped>
 .divider {
-    @apply h-1 border-t border-t-light-700 my-2
+    @apply h-1 border-t border-t-light-900 my-2
 }
 </style>
