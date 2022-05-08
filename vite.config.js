@@ -7,5 +7,14 @@ export default defineConfig({
   plugins: [
     vue(),
     WindiCSS()
-  ]
+  ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://mengtion.vip/kfl-api/api',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })
