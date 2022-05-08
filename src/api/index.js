@@ -13,6 +13,11 @@ export async function getProducts(keyword = '', start = 1, length = 10) {
     }
 }
 
+export async function getProduct(did) {
+    const { data } = await http.post('/getItem.php', 'did=' + did)
+    return data
+}
+
 export async function searchProduct(keyword, start = 1, length = 10) {
     const { data } = await http.post('/searchval.php', 'keyword=' + keyword + '&start=' + start + '&length=' + length)
 

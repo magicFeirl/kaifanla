@@ -10,13 +10,28 @@ const routes = [
     },
     {
         path: '/home',
-        component: () => import('../views/AppHome.vue')
+        component: () => import('../views/AppHome.vue'),
+        children: [
+            {
+                path: '',
+                component: () => import('../views/DishList.vue')
+            },
+            {
+                path: 'order/:did',
+                component: () => import('../views/DishDetail.vue')
+            }
+        ]
     }
 ]
 
 const router = createRouter({
     routes,
-    history: createWebHistory()
+    history: createWebHistory(),
+    scrollBehavior: () => {
+        return {
+            top: 0
+        }
+    }
 })
 
 export default router

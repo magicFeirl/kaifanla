@@ -18,6 +18,6 @@
 
 <style scoped>
 .iconfont {
-    @apply text-2xl cursor-pointer !important
+    @apply cursor-pointer !important
 }
 </style>

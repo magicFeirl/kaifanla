@@ -37,6 +37,6 @@ const search_keyword = computed({
 
 <style scoped>
 .search-btn {
-    @apply absolute right-2 top-1/2 transform -translate-y-1/2 text-xl
+    @apply absolute cursor-pointer right-2 top-1/2 transform -translate-y-1/2 text-xl
 }
 </style>
