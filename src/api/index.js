@@ -1,7 +1,15 @@
 import axios from 'axios'
+import message from '../components/MessageBox'
 
 const http = axios.create({
-    baseURL: '/api'
+    baseURL: 'http://mengtion.vip/kfl-api/api/'
+})
+
+http.interceptors.request.use(config => {
+    return config
+}, (error) => {
+    message('加载出错：网络请求失败', 'danger', 10000)
+    return Promise.reject(error)
 })
 
 export async function getProducts(keyword = '', start = 1, length = 10) {
