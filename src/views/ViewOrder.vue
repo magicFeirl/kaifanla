@@ -26,7 +26,7 @@ import { getOrderInfo } from '../api'
 const products = ref([])
 
 function getImageSrc(name) {
-    return `/src/assets/images/` + name;
+    return `/images/` + name;
 }
 
 onMounted(async () => {

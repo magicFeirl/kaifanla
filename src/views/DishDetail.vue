@@ -59,7 +59,7 @@ getProduct(did).then(({ subjects: data }) => {
     name.value = data.name
     price.value = data.price
     material.value = data.material
-    img_src.value = `/src/assets/images/${data.img_lg}`
+    img_src.value = `/images/${data.img_lg}`
 
     loading.value = false
 })

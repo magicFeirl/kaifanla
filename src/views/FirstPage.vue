@@ -1,7 +1,7 @@
 <template>
     <div class="w-full h-full flex flex-col items-center justify-center">
         <h2 class="text-blue-700 mb-2 text-6xl">开饭啦</h2>
-        <img class="w-full" src="../assets/images/kid-foods.jpg" alt="" />
+        <img class="w-full" src="/images/kid-foods.jpg" alt="" />
         <div @click="jumpToHomePage" class="sec">
             {{ jumpTime }}
         </div>
@@ -9,8 +9,7 @@
 </template>
 
 <script setup>
-import { computed } from '@vue/reactivity';
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router';
 
 const jumpTime = ref(5);
