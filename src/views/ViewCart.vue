@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="text-center ml-4 mt-20 text-light-900" v-else>
-            这↑里↓还什么都没有呢~<router-link class="ml-2 underline" to="/home">回首页</router-link>
+            这↑里↓还什么都没有呢~<router-link class="ml-2 underline" to="/home">去点餐</router-link>
         </div>
     </div>
 </template>
