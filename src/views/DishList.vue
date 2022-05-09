@@ -32,7 +32,7 @@ const products = ref([])
 const firstLoading = ref(true)
 const total = ref(1)
 const hasMore = computed(() => products.value.length < total.value)
-const currPage = ref(1)
+const currPage = ref(0)
 const keyword = ref('')
 
 function viewDishDetail(did) {
@@ -40,7 +40,7 @@ function viewDishDetail(did) {
 }
 
 async function load_data() {
-    const data = await getProducts(keyword.value, currPage.value, 10)
+    const data = await getProducts(keyword.value, currPage.value * 10, 10)
     total.value = parseInt(data.total)
     if (data.subjects) {
         products.value.push(...data.subjects)
@@ -50,7 +50,7 @@ async function load_data() {
 }
 
 watch(keyword, async () => {
-    currPage.value = 1;
+    currPage.value = 0;
     products.value = []
     firstLoading.value = true
     await load_data()
