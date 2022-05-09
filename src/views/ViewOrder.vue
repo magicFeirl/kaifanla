@@ -3,7 +3,7 @@
         <h2 class="text-xl mb-2">我的订单</h2>
         <!-- 下方表格 -->
         <template v-if="!firstLoading">
-            <div class="items-center p-1 font-bold text-sm grid grid-cols-4 w-full border border-light-700">
+            <div class="items-center p-1 font-bold text-sm grid grid-cols-4 w-full border border-light-700 border-b-transparent">
                 <div>编号</div>
                 <div>菜品</div>
                 <div>下单时间</div>
