@@ -1,6 +1,6 @@
 <template>
     <div
-        class="sticky top-0 w-full z-30 h-12 bg-light-600 flex border-b-light-900 border-b items-center justify-between p-6 w-full">
+        class="fixed top-0 w-full z-30 h-12 bg-light-600 flex border-b-light-900 border-b items-center justify-between p-6 w-full">
         <router-link to="/home" class="text-black/50 text-lg">开饭啦</router-link>
         <router-link to="/cart" class="cursor-pointer hover:bg-light-900/50 rounded px-2 py-1 bg-light-900 relative">
             <i class="text-black/50 text-lg iconfont icon-cart-Empty"></i>

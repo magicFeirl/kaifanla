@@ -25,12 +25,18 @@
             </div>
         </template>
         <div class="text-center mt-20 text-light-900" v-else>正在加载中~</div>
+
+        <ScrollTop :showScrollTopBtn="showScrollTopBtn"></ScrollTop>
     </div>
 </template>
 
 <script setup>
 import { ref, watch } from 'vue';
 import { getOrderInfo } from '../api'
+import useScrollTop from '../composable/useScrollTop';
+import ScrollTop from '../components/ScrollTop.vue';
+
+const showScrollTopBtn = useScrollTop()
 
 const products = ref([])
 const currPage = ref(0)

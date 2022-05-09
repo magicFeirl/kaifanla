@@ -1,7 +1,7 @@
 <template>
     <div class="h-full">
         <NavHeader></NavHeader>
-        <div class="mt-4 p-4 pb-14 min-h-full">
+        <div class="mt-4 p-4 py-14 min-h-full">
             <router-view></router-view>
         </div>
         <BottomNavTab></BottomNavTab>

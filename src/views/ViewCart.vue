@@ -6,7 +6,7 @@
             <!-- 购物车物品展示处 -->
             <div v-for="(item, idx) in cartItems" :key="idx">
                 <div class="p-2 rounded flex border border-light-700 my-2 shadow-light-900" v-if="item.count > 0">
-                    <img class="rounded w-24 h-24" :src="item.img" alt="">
+                    <img class="rounded w-20 h-20" :src="item.img" alt="">
                     <div class="pl-2 flex flex-col justify-between">
                         <p class="text-lg">{{ item.name }}</p>
                         <div class="flex items-center">
