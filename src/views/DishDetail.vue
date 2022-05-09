@@ -22,8 +22,19 @@
 
         <div
             class="rounded mb-8 mt-4 p-2 w-full flex justify-end items-center bg-light-700 border border-light-800 border-t-transparent">
-            <button @click="addOrder" class="text-sm btn btn-success mr-2">我要订餐</button>
-            <button class="text-sm btn btn-warn" @click="$router.replace({ path: '/home' })">我再看看</button>
+            <button @click="addCart" class="relative text-sm btn btn-danger mr-2">
+                <i class="iconfont icon-cart-Empty"></i>
+                <span>加入购物车</span>
+                <span class="h-5 w-5 rounded-full bg-red-500 text-white text-sm absolute top-0 right-0 transform translate-x-5px -translate-y-5px">
+                    {{ currentItemCartCount}}
+                </span>
+            </button>
+            <button @click="addOrder" class="text-sm btn btn-success mr-2">
+                <i class="iconfont icon-dinner"></i><span>我要订餐</span>
+            </button>
+            <button class="text-sm btn btn-warn" @click="$router.replace({ path: '/home' })">
+                <i class="iconfont icon-home"></i><span>我再看看</span>
+            </button>
         </div>
     </div>
     <div class="text-center" v-else>
@@ -36,6 +47,8 @@ import { useRoute, useRouter } from 'vue-router';
 import { ref } from 'vue'
 
 import { getProduct } from '../api'
+import { addToCart, getItem } from '../composable/useCart'
+// import message from '../components/MessageBox'
 
 const route = useRoute()
 const router = useRouter()
@@ -49,8 +62,17 @@ const material = ref('')
 const name = ref('')
 const price = ref('')
 
+const currentItem = getItem(did)
+const currentItemCartCount = ref(currentItem.count || 0)
+
 function addOrder() {
     router.push({ path: '/new/' + did })
+}
+
+function addCart() {
+    const itemsCount = addToCart(did, name.value, price.value, img_src.value)
+    // message(`添加成功，当前购物车共有 ${itemsCount} 个商品`, 'warn')
+    currentItemCartCount.value++
 }
 
 getProduct(did).then(({ subjects: data }) => {
@@ -68,5 +90,9 @@ getProduct(did).then(({ subjects: data }) => {
 <style scoped>
 .divider {
     @apply h-1 border-t border-t-light-900 my-2
+}
+
+.iconfont {
+    @apply mr-1
 }
 </style>

@@ -12,5 +12,5 @@
 }
 
 .btn.btn-danger {
-    @apply text-red-200 bg-red-600/50
+    @apply text-red-200 bg-red-600/95
 }

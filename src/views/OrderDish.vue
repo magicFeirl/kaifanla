@@ -1,5 +1,6 @@
 <template>
     <div class=" py-4 px-2 rounded flex flex-col w-full border border-light-700 justify-center">
+        <h2 class="text-center text-light-900 mb-4">新建订单</h2>
         <label for="concacter">联系人:</label>
         <input v-model.trim="username" type="text" id="concacter">
 
