@@ -22,7 +22,7 @@ export async function getProducts(keyword = '', start = 1, length = 10) {
 }
 
 
-export async function getOrderInfo(start = 1, length = 10) {
+export async function getOrderInfo(start = 0, length = 5) {
     const { data } = await http.post('/orderInfo.php', 'start=' + start + '&length=' + length)
 
     return data
