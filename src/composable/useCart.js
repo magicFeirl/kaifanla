@@ -4,7 +4,7 @@ import { useLocalStorage } from '@vueuse/core'
 export const cartItems = useLocalStorage('cartItems', [])
 export const cartItemsCount = computed(() => cartItems.value.map((item) => item.count).reduce((p, c) => p + c, 0))
 
-export function addToCart(did, name, price, img) {
+export function addToCart(did, name, price, img, favorited = false) {
     const index = cartItems.value.findIndex(item => item.did === did)
 
     if (index !== -1) {
@@ -15,7 +15,8 @@ export function addToCart(did, name, price, img) {
             name,
             price,
             img,
-            count: 1
+            count: 1,
+            favorited
         })
 
         cartItems.value.push(item)
@@ -30,7 +31,7 @@ export function getItem(did) {
     if (rst.length) {
         return rst[0]
     } else {
-        return {}
+        return reactive({})
     }
 }
 

@@ -22,6 +22,7 @@
 
         <div
             class="rounded mb-8 mt-4 p-2 w-full flex justify-end items-center bg-light-700 border border-light-800 border-t-transparent">
+            <!-- <button class="text-sm btn btn-info mr-auto" :class="{'text-yellow-500/90': favorited}"><i class="iconfont icon-star !<sm:mr-0"></i><span class="<sm:hidden">收藏</span></button> -->
             <button @click="addCart" class="relative text-sm btn btn-danger mr-2">
                 <i class="iconfont icon-cart-Empty"></i>
                 <span>加入购物车</span>
@@ -62,8 +63,10 @@ const material = ref('')
 const name = ref('')
 const price = ref('')
 
+
 const currentItem = getItem(did)
 const currentItemCartCount = ref(currentItem.count || 0)
+// const favorited = ref(currentItem.favorited)
 
 function addOrder() {
     router.push({ path: '/new/' + did })
