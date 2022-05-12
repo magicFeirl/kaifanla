@@ -1,6 +1,8 @@
 import { useWindowScroll, useTimestamp, useThrottleFn } from '@vueuse/core'
 import { unref, ref, watch } from 'vue'
 
+const distance = 150
+
 export default function () {
     const { y } = useWindowScroll()
 
@@ -9,11 +11,10 @@ export default function () {
     const showScrollTopBtn = ref(false)
     
     watch(y, useThrottleFn(() => {
-
-        if (prevY - y.value >= 50) {
+        if (prevY - y.value >= distance) {
             prevY = y.value
             showScrollTopBtn.value = true
-        } else if (y.value - prevY >= 50) {
+        } else if (y.value - prevY >= distance) {
             showScrollTopBtn.value = false
         }
 

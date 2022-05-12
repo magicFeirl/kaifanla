@@ -10,13 +10,13 @@
             <div class="flex w-full justify-center">
                 <img class="object-cover max-w-full" :src="img_src" />
             </div>
-            <div class="border border-light-500 p-4 bg-light-700">
+            <div class="border border-light-500 p-4 bg-light-600">
                 <p class="mb-4"><span class="font-bold">主要原料：</span>{{ material }}</p>
                 <p class="text-sm">
                     {{ detail }}
                 </p>
                 <div class="divider"></div>
-                <span class="text-red-600">￥ {{ price }}</span>
+                <span class="text-red-500">￥ {{ price }}</span>
             </div>
         </div>
 
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="text-center" v-else>
-        <p class="mt-40 text-gray-500 text-lg">正在加载中~</p>
+        <p class="mt-40 text-light-900 text-lg">正在加载中~</p>
     </div>
 </template>
 

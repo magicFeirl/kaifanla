@@ -10,13 +10,15 @@ export function addToCart(did, name, price, img) {
     if (index !== -1) {
         cartItems.value[index].count++
     } else {
-        cartItems.value.push(reactive({
+        const item = reactive({
             did,
             name,
             price,
             img,
             count: 1
-        }))
+        })
+
+        cartItems.value.push(item)
     }
 
     return cartItemsCount.value
@@ -30,6 +32,15 @@ export function getItem(did) {
     } else {
         return {}
     }
+}
+
+export function removeItem(did) {
+    const idx = cartItems.value.findIndex((item) => item.did === did)
+    if(idx !== -1) {
+        cartItems.value.splice(idx, 1)
+    }
+
+    return idx === -1
 }
 
 export function clearCart() {

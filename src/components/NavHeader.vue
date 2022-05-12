@@ -6,7 +6,7 @@
             <i class="text-black/50 text-lg iconfont icon-cart-Empty"></i>
             <span
                 v-if="cartItemsCount > 0"
-                class="absolute flex items-center justify-center top-0 right-0 transform translate-x-5px -translate-y-5px rounded-full w-5 h-5 bg-red-600 text-sm text-white">
+                class="absolute flex items-center justify-center top-0 right-0 transform translate-x-5px -translate-y-5px rounded-full w-5 h-5 bg-red-500 text-sm text-white">
                 {{ cartItemsCount }}</span>
         </router-link>
     </div>

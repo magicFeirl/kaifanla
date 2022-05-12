@@ -38,7 +38,7 @@ const router = useRouter()
 const did = route.params.did
 const tel = ref('')
 const username = ref('')
-const sex = ref('')
+const sex = ref('男')
 const address = ref('')
 
 function newOrder() {

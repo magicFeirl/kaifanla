@@ -14,6 +14,7 @@
                                 <button @click="sub(item)" class="op-btn">-</button>
                                 <span class="font-bold text-sm text-red-500 mx-4">{{ item.count }}</span>
                                 <button @click="add(item)" class="op-btn">+</button>
+                                <button @click="remove(item)" class="op-btn ml-2">x</button>
                             </div>
                             <div class="ml-4 text-sm">单价:<span class="text-red-500 ml-1 mr-2">{{ item.price }}</span>
                                 总计:<span class="text-red-500 ml-1">{{ item.price * item.count }}</span></div>
@@ -37,7 +38,7 @@
 </template>
 
 <script setup>
-import { cartItems, cartItemsCount, clearCart } from '../composable/useCart';
+import { cartItems, cartItemsCount, clearCart, removeItem } from '../composable/useCart';
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import message from '../components/MessageBox';
@@ -62,7 +63,16 @@ function add(item) {
 
 function sub(item) {
     item.count--;
+    if (item.count === 0) {
+        removeItem(item.did)
+    }
 }
+
+function remove(item) {
+    item.count = 0
+    removeItem(item.did)
+}
+
 </script>
 
 <style scoped>
