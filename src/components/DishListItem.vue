@@ -4,8 +4,8 @@
         <img @click.stop="handleImageClick" class="rounded w-24 h-18" :src="img_src" alt="">
         <div class="flex flex-col w-full">
             <div class="pl-4">
-                <p class="text-lg font-bold">{{ name }}</p>
-                <p>{{ material }} </p>
+                <p class="text-lg font-bold" v-html="name"></p>
+                <p v-html="material"></p>
                 <div class="h-1 m-2 ml-0 border-t border-t-light-600 w-full"></div>
             </div>
             <div class="justify-between flex items-center px-4">
@@ -25,7 +25,11 @@ import { computed } from 'vue'
 const router = useRouter()
 
 const props = defineProps({
-    dish: Object
+    dish: Object,
+    keyword: {
+        type: String,
+        defaut: ''
+    }
 })
 
 const emit = defineEmits(['imageClicked'])
@@ -39,7 +43,14 @@ const emit = defineEmits(['imageClicked'])
 //     price: String
 // }
 
-const { name, price, img_sm, img_lg, material, did } = props.dish
+const { price, img_sm, img_lg, did } = props.dish
+let { name, material } = props.dish
+
+if (props.keyword.trim()) {
+    name = name.replaceAll(props.keyword, `<span class="bg-yellow-200 text-red-500">${props.keyword}</span>`)
+    material = material.replaceAll(props.keyword, `<span class="bg-yellow-200 text-red-500">${props.keyword}</span>`)
+}
+
 const img_src = `/images/${img_sm}`
 const origin_src = `/images/${img_lg}`
 

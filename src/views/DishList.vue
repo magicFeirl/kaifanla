@@ -5,7 +5,7 @@
         <NavSearch :keyword="keyword" v-model="keyword" placeholder="搜索菜品名称或材料..."></NavSearch>
 
         <DishList v-if="!firstLoading">
-            <DishListItem @imageClicked="showImage($event)" v-for="product in products" :dish="product"
+            <DishListItem :keyword="keyword" @imageClicked="showImage($event)" v-for="product in products" :dish="product"
                 :key="product.did">
             </DishListItem>
         </DishList>
