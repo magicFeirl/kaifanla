@@ -12,11 +12,11 @@
                         <div class="flex items-center">
                             <div class="items-center flex p-2">
                                 <button @click="sub(item)" class="op-btn">-</button>
-                                <span class="font-bold text-sm text-red-600 mx-4">{{ item.count }}</span>
+                                <span class="font-bold text-sm text-red-500 mx-4">{{ item.count }}</span>
                                 <button @click="add(item)" class="op-btn">+</button>
                             </div>
-                            <div class="ml-4 text-sm">单价:<span class="text-red-600 ml-1 mr-2">{{ item.price }}</span>
-                                总计:<span class="text-red-600 ml-1">{{ item.price * item.count }}</span></div>
+                            <div class="ml-4 text-sm">单价:<span class="text-red-500 ml-1 mr-2">{{ item.price }}</span>
+                                总计:<span class="text-red-500 ml-1">{{ item.price * item.count }}</span></div>
                         </div>
                     </div>
                 </div>
@@ -67,6 +67,6 @@ function sub(item) {
 
 <style scoped>
 .op-btn {
-    @apply flex items-center justify-center w-24px h-24px border rounded border-dark-600 text-dark-400 active: (bg-gray-200/50)
+    @apply flex items-center justify-center w-24px h-24px border rounded border-light-900 text-light-900 active: (bg-gray-200/50)
 }
 </style>
