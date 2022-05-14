@@ -14,7 +14,7 @@
         </div>
 
         <div v-if="!firstLoading" class="mt-4">
-            <div v-if="!hasMore" class="btn btn-danger w-full">没有更多数据了~</div>
+            <div v-if="!hasMore" class="btn btn-danger disabled w-full">没有更多数据了~</div>
             <button @click="currPage += 1" v-else class="btn btn-success w-full">加载更多</button>
         </div>
 

@@ -18,3 +18,7 @@
 .btn.btn-info {
     @apply text-white bg-blue-500/95
 }
+
+.btn.disabled {
+    @apply text-gray-100 transform-none transition-none cursor-not-allowed bg-gray-400 !important
+}

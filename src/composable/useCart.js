@@ -4,7 +4,7 @@ import { useLocalStorage } from '@vueuse/core'
 export const cartItems = useLocalStorage('cartItems', [])
 export const cartItemsCount = computed(() => cartItems.value.map((item) => item.count).reduce((p, c) => p + c, 0))
 
-export function addToCart(did, name, price, img, favorited = false) {
+export function addToCart(did, name, price, img, favorited = false, selected = true) {
     const index = cartItems.value.findIndex(item => item.did === did)
 
     if (index !== -1) {
@@ -16,7 +16,8 @@ export function addToCart(did, name, price, img, favorited = false) {
             price,
             img,
             count: 1,
-            favorited
+            favorited,
+            selected
         })
 
         cartItems.value.push(item)
@@ -37,7 +38,7 @@ export function getItem(did) {
 
 export function removeItem(did) {
     const idx = cartItems.value.findIndex((item) => item.did === did)
-    if(idx !== -1) {
+    if (idx !== -1) {
         cartItems.value.splice(idx, 1)
     }
 
@@ -46,4 +47,15 @@ export function removeItem(did) {
 
 export function clearCart() {
     cartItems.value.splice(0, cartItems.value.length)
+}
+
+/**
+ * 清空选中商品
+ * 
+ * @returns 清空的选中的商品的数量
+*/
+export function clearSelectedCartItem() {
+    const preCount = cartItems.value.length
+    cartItems.value = cartItems.value.filter(item => !item.selected)
+    return preCount - cartItems.value.length
 }
