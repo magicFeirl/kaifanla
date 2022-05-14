@@ -6,10 +6,10 @@
             <!-- 选择操作 -->
             <div class="text-sm !text-dark-900/50 flex w-full justify-between mt-6 mb-2 px-2">
                 <span>已选择 <span class="text-red-600">{{ selectedCount }}</span> 项商品</span>
-                <span class="flex" @click="selectAllItems" :class="{ selected: selectAll }">
-                    <span>全选</span>
-                    <i class="checkbox-btn iconfont icon-check ml-2"></i>
-                </span>
+                <div class="flex select-tabs">
+                    <span class="mr-2" @click="selectAllItems">全选</span>
+                    <span @click="reverseSelectAllItems">反选</span>
+                </div>
             </div>
             <div class="flex flex-col w-full">
                 <!-- 购物车物品展示处 -->
@@ -41,7 +41,8 @@
                     <span>总计: <span class="text-red-600">{{ total }}￥</span></span>
                     <div>
                         <button @click="clearCart" class="mr-2 btn btn-danger min-w-20 !text-sm">清空购物车</button>
-                        <button @click="checkout" :class="{disabled: selectedCount === 0}" class="btn btn-success min-w-20 !text-sm">结算</button>
+                        <button @click="checkout" :class="{ disabled: selectedCount === 0 }"
+                            class="btn btn-success min-w-20 !text-sm">结算</button>
                     </div>
                 </div>
             </div>
@@ -58,6 +59,8 @@ import { cartItems, cartItemsCount, clearCart as clearCartItems, clearSelectedCa
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import message from '../components/MessageBox';
+import messageDialog from '../components/MessageDialog';
+
 
 const router = useRouter()
 
@@ -65,12 +68,16 @@ const hasItems = computed(() => cartItemsCount.value > 0)
 
 const total = computed(() => cartItems.value.map((item) => item.count * item.price).reduce((p, c) => p + c, 0))
 const selectedCount = computed(() => cartItems.value.filter((item) => item.selected).length)
-const selectAll = computed(() => selectedCount.value === cartItems.value.length)
 
 function selectAllItems() {
     cartItems.value.forEach(item => {
+        item.selected = true
+    })
+}
+
+function reverseSelectAllItems() {
+    cartItems.value.forEach(item => {
         item.selected = !item.selected
-        selectAll.value = !selectAll.value
     })
 }
 
@@ -90,8 +97,10 @@ function checkout() {
 }
 
 function clearCart() {
-    message('清空成功~', 'warn')
-    clearCartItems()
+    messageDialog('提示', '确定要清空购物车吗？', '确定', '取消', () => {
+        message('清空成功~', 'warn')
+        clearCartItems()
+    })
 }
 
 function add(item) {
@@ -113,14 +122,12 @@ function remove(item) {
 </script>
 
 <style scoped>
-.selected,
-.selected .icon-check {
-    @apply text-blue-400/90 !important
+.selected {
+    @apply border border-blue-400/90 text-blue-400/90 !important
 }
 
-.selected.icon-check,
-.selected .icon-check {
-    @apply border border-blue-400/90 !important
+.select-tabs span {
+    @apply hover: text-blue-400 cursor-pointer
 }
 
 .checkbox-btn {
