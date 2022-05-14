@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import { cartItems, cartItemsCount, clearCart, removeItem } from '../composable/useCart';
+import { cartItems, cartItemsCount, clearCart as clearCartItems, removeItem } from '../composable/useCart';
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import message from '../components/MessageBox';
@@ -55,6 +55,11 @@ function checkout() {
         clearCart()
         router.push({ path: '/home' })
     }, 100);
+}
+
+function clearCart() {
+    message('清空成功~', 'warn')
+    clearCartItems()
 }
 
 function add(item) {
