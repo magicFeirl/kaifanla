@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col items-center pb-10">
-        <h2 class="text-xl mb-2">我的订单</h2>
+        <h2 class="text-xl mb-4 text-dark-200/50">我的订单</h2>
         <!-- 下方表格 -->
         <template v-if="!firstLoading">
             <div class="items-center p-1 font-bold text-sm grid grid-cols-4 w-full border border-light-700 border-b-transparent">
