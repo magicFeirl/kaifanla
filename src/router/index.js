@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useTitle } from '@vueuse/core'
+
+import { useUser } from '../composable/useUser'
 
 import FirstPage from '../views/FirstPage.vue'
 
@@ -15,23 +18,45 @@ const routes = [
         children: [
             {
                 path: 'home',
-                component: () => import('../views/DishList.vue')
+                component: () => import('../views/DishList.vue'),
+                meta: {
+                    title: '开饭啦-首页'
+                }
             },
             {
                 path: 'order/:did',
-                component: () => import('../views/DishDetail.vue')
+                component: () => import('../views/DishDetail.vue'),
+                meta: {
+                    title: '商品详情'
+                }
             },
             {
                 path: 'new/:did',
-                component: () => import('../views/OrderDish.vue')
+                component: () => import('../views/OrderDish.vue'),
+                meta: {
+                    title: '新建订单'
+                }
             },
             {
                 path: 'myorder',
-                component: () => import('../views/ViewOrder.vue')
+                component: () => import('../views/ViewOrder.vue'),
+                meta: {
+                    title: '订单列表'
+                }
             },
             {
                 path: 'cart',
-                component: () => import('../views/ViewCart.vue')
+                component: () => import('../views/ViewCart.vue'),
+                meta: {
+                    title: '我的购物车'
+                }
+            }, {
+                path: 'login',
+                component: () => import('../views/UserLogin.vue'),
+                meta: {
+                    title: '登录',
+                    loginPage: true
+                }
             }
         ]
     },
@@ -45,6 +70,20 @@ const router = createRouter({
             top: 0
         }
     }
+})
+
+
+router.beforeEach(to => {
+    const title = to.meta.title
+
+    if (to.meta.loginPage) {
+        const user = useUser()
+        if (user.value) {
+            return '/'
+        }
+    }
+
+    useTitle(title)
 })
 
 export default router

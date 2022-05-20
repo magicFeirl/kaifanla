@@ -14,7 +14,7 @@
             <div class="flex flex-col w-full">
                 <!-- 购物车物品展示处 -->
                 <div v-for="(item, idx) in cartItems" :key="idx">
-                    <div class="p-2 rounded flex border border-light-700 my-2 shadow-light-900" v-if="item.count > 0">
+                    <div :class="{ selected: item.selected }" class="p-2 rounded flex border border-light-700 my-2 shadow-light-900" v-if="item.count > 0">
                         <img class="rounded w-20 h-20" :src="item.img" alt="">
                         <div class="pl-2 flex flex-col justify-between w-full">
                             <p class="text-lg w-full flex items-center justify-between">
@@ -66,7 +66,7 @@ const router = useRouter()
 
 const hasItems = computed(() => cartItemsCount.value > 0)
 
-const total = computed(() => cartItems.value.map((item) => item.count * item.price).reduce((p, c) => p + c, 0))
+const total = computed(() => cartItems.value.map((item) => item.selected ? item.count * item.price: 0).reduce((p, c) => p + c, 0))
 const selectedCount = computed(() => cartItems.value.filter((item) => item.selected).length)
 
 function selectAllItems() {
@@ -122,12 +122,17 @@ function remove(item) {
 </script>
 
 <style scoped>
+
 .selected {
-    @apply border border-blue-400/90 text-blue-400/90 !important
+    @apply border border-blue-400/90 !important
+}
+
+i.selected {
+    @apply text-blue-400/90
 }
 
 .select-tabs span {
-    @apply hover: text-blue-400 cursor-pointer
+    @apply hover: text-blue-400  cursor-pointer
 }
 
 .checkbox-btn {

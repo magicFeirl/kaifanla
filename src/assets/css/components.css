@@ -22,3 +22,8 @@
 .btn.disabled {
     @apply text-gray-100 transform-none transition-none cursor-not-allowed bg-gray-400 !important
 }
+
+/* input */
+.input {
+    @apply w-full rounded h-9 p-2 border-2 border-light-600
+}

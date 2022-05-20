@@ -22,6 +22,12 @@ export async function getProducts(keyword = '', start = 1, length = 10) {
 }
 
 
+export async function login(username, password) {
+    const { data } = await http.post('/loginToken.php', 'userName=' + username + '&password=' + password)
+
+    return data;
+}
+
 export async function getOrderInfo(start = 0, length = 5) {
     const { data } = await http.post('/orderInfo.php', 'start=' + start + '&length=' + length)
 

@@ -26,8 +26,9 @@
             <button @click="addCart" class="relative text-sm btn btn-danger mr-2">
                 <i class="iconfont icon-cart-Empty"></i>
                 <span>加入购物车</span>
-                <span class="h-5 w-5 rounded-full bg-red-500 text-white text-sm absolute top-0 right-0 transform translate-x-5px -translate-y-5px">
-                    {{ currentItemCartCount}}
+                <span
+                    class="h-5 w-5 rounded-full bg-red-500 text-white text-sm absolute top-0 right-0 transform translate-x-5px -translate-y-5px">
+                    {{ currentItemCartCount }}
                 </span>
             </button>
             <button @click="addOrder" class="text-sm btn btn-success mr-2">
@@ -44,12 +45,13 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'vue-router';
 import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router';
+import { useUser } from '../composable/useUser'
 
 import { getProduct } from '../api'
 import { addToCart, getItem } from '../composable/useCart'
-// import message from '../components/MessageBox'
+import dialog from '../components/MessageDialog'
 
 const route = useRoute()
 const router = useRouter()
@@ -63,6 +65,7 @@ const material = ref('')
 const name = ref('')
 const price = ref('')
 
+const user = useUser()
 
 const currentItem = getItem(did)
 const currentItemCartCount = ref(currentItem.count || 0)
@@ -73,6 +76,13 @@ function addOrder() {
 }
 
 function addCart() {
+    if (!user.value) {
+        dialog('提示', '菜品加入购物车需要登录，是否登录？', '登录', '取消', () => {
+            router.push('/login')
+        })
+        return;
+    }
+
     const itemsCount = addToCart(did, name.value, price.value, img_src.value)
     // message(`添加成功，当前购物车共有 ${itemsCount} 个商品`, 'warn')
     currentItemCartCount.value++

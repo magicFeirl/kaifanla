@@ -1,8 +1,16 @@
 import { computed, reactive } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
 
+import { useUser } from './useUser'
+
+const user = useUser()
+
 export const cartItems = useLocalStorage('cartItems', [])
 export const cartItemsCount = computed(() => cartItems.value.map((item) => item.count).reduce((p, c) => p + c, 0))
+
+if (!user.value) {
+    clearCart()
+}
 
 export function addToCart(did, name, price, img, favorited = false, selected = true) {
     const index = cartItems.value.findIndex(item => item.did === did)

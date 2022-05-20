@@ -28,6 +28,7 @@ import DishList from '../components/DishList.vue'
 import DishListItem from '../components/DishListItem.vue'
 import ImageViewer from '../components/ImageViewer.vue';
 import ScrollTop from '../components/ScrollTop.vue'
+import message from '../components/MessageBox'
 
 import { ref, computed, watch } from 'vue';
 import { getProducts } from '../api'
@@ -64,6 +65,7 @@ watch(keyword, async () => {
     products.value = []
     firstLoading.value = true
     await load_data()
+    message(`获取到 ${total.value} 条数据`, 'success')
 })
 
 watch(currPage, async () => {

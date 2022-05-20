@@ -1,6 +1,6 @@
 <template>
     <div class="relative" v-bind="$attrs">
-        <input v-model.lazy="search_keyword" :placeholder="placeholder" type="text" class="pr-8 w-full rounded h-9 p-2 border-2 border-light-600">
+        <input v-model.lazy="search_keyword" :placeholder="placeholder" type="text" class="input pr-8">
         <i class="iconfont icon-search search-btn"></i>
     </div>
 </template>
