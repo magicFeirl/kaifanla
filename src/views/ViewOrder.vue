@@ -13,7 +13,9 @@
                 <div class="border border-light-700 text-sm grid items-center justify-center grid-cols-4 w-full"
                     v-for="p in products" :key="p.oid">
                     <div class="pl-1">{{ p.oid }}</div>
-                    <div class="p-2"><img class="rounded w-full h-full" :src="getImageSrc(p.img_sm)" /></div>
+                    <div class="p-2">
+                        <img class="rounded w-full h-full" v-lazy :data-src="getImageSrc(p.img_sm)" />
+                    </div>
                     <div>{{ new Date(parseInt(p.order_time)).toLocaleString() }}</div>
                     <div class="text-center">{{ p.user_name }}</div>
                 </div>

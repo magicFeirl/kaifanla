@@ -15,7 +15,7 @@
                 <!-- 购物车物品展示处 -->
                 <div v-for="(item, idx) in cartItems" :key="idx">
                     <div :class="{ selected: item.selected }" class="p-2 rounded flex border border-light-700 my-2 shadow-light-900" v-if="item.count > 0">
-                        <img class="rounded w-20 h-20" :src="item.img" alt="">
+                        <img v-lazy class="rounded w-20 h-20" :data-src="item.img" alt="">
                         <div class="pl-2 flex flex-col justify-between w-full">
                             <p class="text-lg w-full flex items-center justify-between">
                                 <span>{{ item.name }}</span>

@@ -1,7 +1,7 @@
 <template>
     <div @click="viewDishDetail"
         class="mt-2 cursor-pointer flex w-full items-center rounded border border-light-800 p-2 transition-shadow transition-transform hover:(shadow-light-500 shadow transform -translate-y-1)">
-        <img @click.stop="handleImageClick" class="rounded w-24 h-18" :src="img_src" alt="">
+        <img v-lazy @click.stop="handleImageClick" class="rounded w-24 h-18" :data-src="img_src" alt="">
         <div class="flex flex-col w-full">
             <div class="pl-4">
                 <p class="text-lg font-bold" v-html="name"></p>
