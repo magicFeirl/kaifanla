@@ -10,7 +10,7 @@
             </div>
             <div class="justify-between flex items-center px-4">
                 <span class="text-red-600">￥{{ price }}</span>
-                <span v-if="itemCount" class="text-sm text-light-900">x{{ itemCount }}</span>
+                <span v-if="itemCount" class="text-sm text-gray-400">x{{ itemCount }}</span>
             </div>
         </div>
 

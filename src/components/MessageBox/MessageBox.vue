@@ -51,7 +51,7 @@ onMounted(() => {
     @apply bg-yellow-400/50
 }
 
-.messsage.success {
+.message.success {
     @apply bg-green-500/50
 }
 

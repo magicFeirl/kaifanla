@@ -1,5 +1,6 @@
 <template>
     <div class="flex p-4 flex-col">
+        <h2 class="text-center w-full text-lg text-gray-400 mb-4">用户登录</h2>
         <label for="username">用户名</label>
         <input v-model.trim="username" type="text" class="input !h-8 !p-2">
         <label for="password">密码</label>
@@ -39,7 +40,7 @@ async function login() {
     }
 
     const { token } = subjects
-    message('登录成功~', 'success')
+    message('登录成功~请等待加载', 'success')
 
     setUser(token, remember.value)
 
