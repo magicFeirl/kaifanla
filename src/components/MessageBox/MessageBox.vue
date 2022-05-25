@@ -1,7 +1,7 @@
 <template>
-    <transition @before-leave="onClose" @after-leave="onDestroy" name="fade">
+    <transition @before-leave="onClose" @after-leave="onDestroy" name="message-fade">
         <div v-if="visiable" :style="`top: ${top}px`" :class="type"
-            class="message fixed z-50 left-1/2 transform -translate-x-1/2">
+            class="message">
             {{ message }}
         </div>
     </transition>
@@ -37,32 +37,25 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-    @apply transition-opacity transition-transform !important
-}
-
-.fade-enter-from {
-    @apply transform -translate-x-1/2 -translate-y-10 opacity-0
-}
-
-.fade-leave-to {
-    @apply transform -translate-x-1/2 translate-y-0 !important
-}
 
 .message {
-    @apply rounded px-6 py-2 text-white text-sm
+    @apply fixed z-50 left-1/2 transform -translate-x-1/2 rounded px-6 py-2 text-white text-sm transition-all
 }
 
-.warn {
+.message-fade-enter-from,
+.message-fade-leave-to {
+    @apply opacity-0 -translate-x-1/2 -translate-y-20px
+}
+
+.message.warn {
     @apply bg-yellow-400/50
 }
 
-.success {
+.messsage.success {
     @apply bg-green-500/50
 }
 
-.danger {
+.message.danger {
     @apply bg-red-400/50
 }
 </style>

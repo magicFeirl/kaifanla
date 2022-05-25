@@ -47,6 +47,6 @@ function close(id) {
         // 直接赋值组件的 top 为减去移除组件后的高度
         const pos = parseInt(instances[i].el.style['top']) - removedHeight - 16;
         // topOffset = topOffset - removedHeight - 16 同理
-        instances[i].component.props.topOffset = pos;
+        instances[i].component.props.top = pos;
     }
 }
