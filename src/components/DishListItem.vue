@@ -10,7 +10,10 @@
             </div>
             <div class="justify-between flex items-center px-4">
                 <span class="text-red-600">￥{{ price }}</span>
-                <span v-if="itemCount" class="text-sm text-gray-400">x{{ itemCount }}</span>
+                <div>
+                    <span v-if="itemCount" class="text-sm text-gray-400">x{{ itemCount }}</span>
+                    <span v-if="favorited" class="ml-2 text-sm text-yellow-400/70">已收藏</span>
+                </div>
             </div>
         </div>
 
@@ -21,6 +24,7 @@
 import { useRouter } from 'vue-router';
 import { getItem } from '../composable/useCart'
 import { computed } from 'vue'
+import { isFavorited } from '../composable/useFavorite';
 
 const router = useRouter()
 
@@ -28,7 +32,7 @@ const props = defineProps({
     dish: Object,
     keyword: {
         type: String,
-        defaut: ''
+        default: ''
     }
 })
 
@@ -57,6 +61,8 @@ const origin_src = `/images/${img_lg}`
 const item = getItem(did)
 
 const itemCount = computed(() => item.count || 0)
+
+const favorited = isFavorited(did)
 
 function handleImageClick() {
     emit('imageClicked', origin_src)

@@ -20,7 +20,7 @@
         <input v-model.trim="tel" type="text" id="tel">
 
         <label for="address">送餐地址:</label>
-        <textarea v-model.trim="address" rows="6" type="text" id="address"></textarea>
+        <textarea class="resize-none" v-model.trim="address" rows="6" type="text" id="address"></textarea>
 
         <button @click="newOrder" class="btn btn-success my-4 w-full">确定下单</button>
     </div>

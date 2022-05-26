@@ -22,7 +22,11 @@
 
         <div
             class="rounded mb-8 mt-4 p-2 w-full flex justify-end items-center bg-light-700 border border-light-800 border-t-transparent">
-            <!-- <button class="text-sm btn btn-info mr-auto" :class="{'text-yellow-500/90': favorited}"><i class="iconfont icon-star !<sm:mr-0"></i><span class="<sm:hidden">收藏</span></button> -->
+            <button @click="addToFavorite" class="text-sm btn btn-info mr-auto"
+                :class="{ '!text-yellow-300/90': favorited }">
+                <i class="iconfont icon-star !<sm:mr-0"></i>
+                <span>收藏</span>
+            </button>
             <button @click="addCart" class="relative text-sm btn btn-danger mr-2">
                 <i class="iconfont icon-cart-Empty"></i>
                 <span>加入购物车</span>
@@ -48,6 +52,7 @@
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
 import { useUser } from '../composable/useUser'
+import { favorite, isFavorited } from '../composable/useFavorite'
 
 import { getProduct } from '../api'
 import { addToCart, getItem } from '../composable/useCart'
@@ -64,12 +69,26 @@ const img_src = ref('')
 const material = ref('')
 const name = ref('')
 const price = ref('')
+const img_lg = ref('')
 
 const user = useUser()
 
 const currentItem = getItem(did)
 const currentItemCartCount = ref(currentItem.count || 0)
-// const favorited = ref(currentItem.favorited)
+const favorited = ref(isFavorited(did))
+
+function addToFavorite() {
+    const dish = {
+        did,
+        detail: detail.value,
+        name: name.value,
+        price: price.value,
+        material: material.value,
+        img_sm: img_lg.value
+    }
+
+    favorited.value = favorite(dish)
+}
 
 function addOrder() {
     router.push({ path: '/new/' + did })
@@ -94,6 +113,7 @@ getProduct(did).then(({ subjects: data }) => {
     name.value = data.name
     price.value = data.price
     material.value = data.material
+    img_lg.value = data.img_lg
     img_src.value = `/images/${data.img_lg}`
 
     loading.value = false

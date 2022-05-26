@@ -6,8 +6,8 @@
         <router-link :class="{active: activeIndex === 1}" @click="setActiveIndex(1)" to="/myorder" class="flex-1 text-center">
             <i class="iconfont icon-user"></i>
         </router-link>
-        <router-link :class="{active: activeIndex === 2}" @click="setActiveIndex(2)" to="/home" class="flex-1 text-center">
-            <i class="iconfont icon-menu1"></i>
+        <router-link :class="{active: activeIndex === 2}" @click="setActiveIndex(2)" to="/favorite" class="flex-1 text-center">
+            <i class="iconfont icon-star"></i>
         </router-link>
     </div>
 </template>

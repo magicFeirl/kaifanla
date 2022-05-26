@@ -57,6 +57,13 @@ const routes = [
                     title: '登录',
                     loginPage: true
                 }
+            },
+            {
+                path: 'favorite',
+                component: () => import('../views/MyFavorite.vue'),
+                meta: {
+                    title: '我的收藏'
+                }
             }
         ]
     },
