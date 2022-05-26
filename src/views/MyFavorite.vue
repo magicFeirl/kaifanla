@@ -17,7 +17,6 @@ import DishListItem from '../components/DishListItem.vue'
 
 import { allFavoriteItems } from '../composable/useFavorite';
 const products = allFavoriteItems()
-console.log(products)
 </script>
 
 <style scoped>
